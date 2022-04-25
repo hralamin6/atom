@@ -59,11 +59,11 @@
     @if(!$submitted)
         @if(!$is_single_page)
             <div
-                class="relative scrollbar-none after:inset-x-0 overflow-x-auto after:h-0.5 mt-2 after:absolute after:top-1/2 after:-translate-y-1/2 after:block after:rounded-lg after:bg-gray-100">
-                <ol class="relative z-10 flex justify-between text-sm font-medium text-gray-500">
+                class="scrollbar-none after:inset-x-0 overflow-x-auto after:h-0.5 mt-2 after:absolute after:top-1/2 after:-translate-y-1/2 after:block after:rounded-lg after:bg-gray-100">
+                <ol class="z-10 flex justify-between text-sm font-medium text-gray-500">
                     <template x-for="(stp, i) in ans">
                         <li class="flex items-center p-2">
-                            <span :class="{'bg-blue-600 text-white': step==i+1}"
+                            <span :class="{'bg-green-600 text-white': step==i+1}"
                                   class="w-6 h-6 text-[10px] font-bold leading-6 bg-gray-100 text-center rounded-full"
                                   x-text="i+1">1</span>
                         </li>
@@ -75,7 +75,7 @@
             @foreach($items as $i => $item)
                 <div @if(!$is_single_page) x-cloak x-show="step=={{$i+1}}"
                      @endif class=" @if(!$is_mcq) md:flex md:gap-2 justify-between @endif border border-2 rounded-lg border-purple-400 p-3 my-2">
-                    <legend class="text-lg font-medium my-1"><span>({{$i+1}})</span> What is the symbol of <span
+                    <legend class="text-lg font-medium my-1 text-xs md:text-lg"><span>({{$i+1}})</span> What is the symbol of {{$practise}} <span
                             class="text-primary">{{$item[$practise]}}?</span></legend>
                     @if(!$is_mcq)
                         <input type="text" placeholder="Enter symbol, e.g: Ca" x-model="ans[{{$i}}]"

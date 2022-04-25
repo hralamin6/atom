@@ -11,7 +11,7 @@
                 <div class="mt-1 rounded-md shadow-sm">
                     <select wire:model="searchBy" class="select dark:text-white dark:bg-gray-600 text-xs border border-indigo-400 select-sm text-xs select-sm max-w-xs">
                         @foreach(\Illuminate\Support\Facades\Schema::getColumnListing('atoms') as $i=> $col)
-                            @if($col!='discovered_by' && $col!='summary')
+                            @if($col!='summary' && $col!='discovered_by' && $col!='source' && $col!='created_at' && $col!='updated_at')
                                 <option value="{{$col}}">{{$col}}</option>
                             @endif
                         @endforeach

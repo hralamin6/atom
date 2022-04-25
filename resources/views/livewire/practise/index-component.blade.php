@@ -64,7 +64,7 @@
     </div>
     <div class="grid grid-cols-2 justify-between md:grid-cols-2 gap-6">
         @foreach(\Illuminate\Support\Facades\Schema::getColumnListing('atoms') as $i=> $col)
-            @if($col!='summary' && $col!='id')
+            @if($col!='summary' && $col!='discovered_by' && $col!='source' && $col!='created_at' && $col!='updated_at' && $col!='id')
         <a class="btn btn-outline btn-primary btn-sm capitalize dark:text-pink-400" href="{{route('practise.symbol.to')}}?practise={{$col}}">symbol to {{$col}}</a>
         <a class="btn btn-outline btn-secondary btn-sm capitalize dark:text-blue-400" href="{{route('practise.symbol.from')}}?practise={{$col}}">{{$col}} to symbol</a>
             @endif

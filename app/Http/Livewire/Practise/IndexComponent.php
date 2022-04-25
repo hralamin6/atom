@@ -22,6 +22,7 @@ class IndexComponent extends Component
         session()->has('q_time')? $this->q_time = session()->get('q_time'):'';
         session()->has('is_minus')? $this->is_minus = session()->get('is_minus'):'';
         session()->has('is_mcq')? $this->is_mcq = session()->get('is_mcq'):'';
+        $this->startPractise();
     }
     public function updated($f, $v)
     {
