@@ -59,7 +59,7 @@
     @if(!$submitted)
         @if(!$is_single_page)
             <div
-                class="scrollbar-none after:inset-x-0 overflow-x-auto after:h-0.5 mt-2 after:absolute after:top-1/2 after:-translate-y-1/2 after:block after:rounded-lg after:bg-gray-100">
+                class="scrollbar-none after:inset-x-0 overflow-x-auto after:h-0.5 mt-2">
                 <ol class="z-10 flex justify-between text-sm font-medium text-gray-500">
                     <template x-for="(stp, i) in ans">
                         <li class="flex items-center p-2">

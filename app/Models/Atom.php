@@ -22,6 +22,22 @@ class Atom extends Model
         }
         return $atom->shuffle();
     }
+    public function opts(Atom $atom, $field)
+    {
+        if ($field==='number'||$field==='mass' || $field==='boiling_point'||$field==='density'||$field==='melting_point'||$field==='id'||$field==='electron_affinity'){
+            $atom = Atom::where('id', '!=', $atom->id)->where('id', '<=', $atom->id+5)->where('id', '>=', $atom->id-5)->inRandomOrder()->limit(3)->get()->merge(Atom::where('id', $atom->id)->get());
+        }elseif ($field==='group'||$field==='category'||$field==='period'){
+            $atom = Atom::where('id', '!=', $atom->id)->where($field, '!=', $atom[$field])->inRandomOrder()->limit(3)->get()->merge(Atom::where('id', $atom->id)->get());
+        }elseif ($field==='phase'){
+            $atom = Atom::where('id', '!=', $atom->id)->where($field, '!=', $atom[$field])->inRandomOrder()->limit(1)->get()->merge(Atom::where('id', $atom->id)->get());
+        }elseif ($field==='name' || $field==='symbol'){
+            $f = substr($atom->symbol, 0, 1);
+            $atom = Atom::where('id', '!=', $atom->id)->where($field, 'like', $f.'%')->inRandomOrder()->limit(3)->get()->merge(Atom::where('id', $atom->id)->get());
+        }else{
+            $atom = Atom::where('id', '!=', $atom->id)->inRandomOrder()->limit(3)->get()->merge(Atom::where('id', $atom->id)->get());
+        }
+        return $atom->shuffle();
+    }
     public function getType()
     {
         if ($this->category=='alkaline earth metal'){

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'name'=>'hralamin',
             'email'=>'hralamin2020@gmail.com',
             'email_verified_at' => now(),
-            'password'=>Hash::make('0')
+            'password'=>Hash::make('Qqqqqqqq1@')
         ]);
 
         // \App\Models\User::factory(10)->create();

@@ -47,6 +47,8 @@ Swal.fire({
         <div class="flex justify-between gap-3 bg-white border dark:border-gray-600 dark:bg-darkSidebar px-4 py-2">
             <p class="text-gray-600 dark:text-gray-200">Quiz Table</p>
             <div class="flex justify-center gap-4 text-gray-500 dark:text-gray-300 capitalize">
+                @if(auth()->id()==1)
+
                 <button @click="$wire.openModal()" class="px-1 mt-1 mb-0.5 text-white pb-0.5 font-semibold text-xs bg-pink-400 rounded-lg">@lang('add new')</button>
                 <button class="" @click="openTable = !openTable">
                     <svg x-show="openTable" xmlns="http://www.w3.org/2000/svg" class="h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -74,6 +76,7 @@ Swal.fire({
                         </div>
                     </div>
                 </div>
+                @endif
 
             </div>
         </div>
@@ -123,8 +126,10 @@ Swal.fire({
                                         <a href="{{route('admin.question.option.exam', $item)}}"><x-h-o-arrows-expand class="w-5 text-indigo-600 cursor-pointer"/></a>
                                     @endif
                                     <a href="{{route('admin.question.option.result', $item)}}"><x-h-o-home class="w-5 text-indigo-600 cursor-pointer"/></a>
-                                    <x-h-o-pencil-alt @click="$wire.loadData({{$item->id}})" class="w-5 text-purple-600 cursor-pointer"/>
+                                        @if(auth()->id()==1)
+                                        <x-h-o-pencil-alt @click="$wire.loadData({{$item->id}})" class="w-5 text-purple-600 cursor-pointer"/>
                                     <x-h-o-trash @click.prevent="$dispatch('open-delete-modal', { title: 'Hello World!', text: 'you cant revert', icon: 'error', eventName: 'deleteSingle', model: {{$item->id}} })" class="w-5 text-pink-500 cursor-pointer"/>
+                                        @endif
                                 </td>
                             </tr>
                         @empty
@@ -175,6 +180,7 @@ Swal.fire({
 
                         </div>
                     </div>
+
                     <div class="flex items-center justify-between w-full mt-4">
                         <button type="button" @click="modal= false, editMode = false" class="bg-red-600 focus:ring-gray-400 transition duration-150 text-white ease-in-out hover:bg-red-300 rounded px-8 py-2 text-sm">Cancel</button>
                         <button type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
